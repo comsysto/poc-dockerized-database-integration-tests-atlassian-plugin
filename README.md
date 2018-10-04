@@ -21,9 +21,21 @@ Simply run:
 atlas-unit-test
 ```
 
-Why not `atlas-integration-test`? Because even though it is named 'integration-test' it starts a full JIRA instance
+<p align="center"><img src="./doc/success.png" width="80%"></p>
+
+&nbsp;
+
+### Distinctions
+
+ * Why not `atlas-integration-test`? 
+   * Because even though it is named 'integration-test' it starts a full JIRA instance
 and runs tests against it. We only want to instantiate Active Objects with a real database and not the whole JIRA context.
-That is why we use the `atlas-unit-test` command.  
+That is why we use the `atlas-unit-test` command.
+ * Why not use `DynamicJdbcConfiguration` Annotation and System properties or maven profiles?
+   * There are already many examples in the web on how to do that. I wanted to show another way.
+ * Why not use `@ManyToOne` Annotations?
+   * You can do that if you want an **Left Join**
+   * The PoC wants to show how to perform an **Inner Join** 
 
 
 &nbsp;
