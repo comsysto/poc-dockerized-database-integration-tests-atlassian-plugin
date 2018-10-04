@@ -36,18 +36,13 @@ public class PetAndOwnerDataAccessServiceTest {
     //
 
     protected static void setUpDockerContainer(String dockerRunCommand) {
-        CmdLineExecutionResult result = CmdLineTestHelper
-                .executeCommand(dockerRunCommand);
-        assertEquals(new Integer(0), result.exitCode);
-        assertEquals(null, result.exception);
+        CmdLineTestHelper.executeAndFailIfNotValidStatusCode(dockerRunCommand, 0);
     }
 
     protected static void tearDownDockerContainer(String dockerGetIdCommand) {
         CmdLineExecutionResult result = CmdLineTestHelper
-                .executeCommand(dockerGetIdCommand);
-        assertEquals(new Integer(0), result.exitCode);
-        assertEquals(null, result.exception);
+                .executeAndFailIfNotValidStatusCode(dockerGetIdCommand, 0);
         String dockerId = result.stdout.trim();
-        CmdLineTestHelper.executeCommand("docker kill " + dockerId);
+        CmdLineTestHelper.executeAndFailIfNotValidStatusCode("docker kill " + dockerId, 0);
     }
 }

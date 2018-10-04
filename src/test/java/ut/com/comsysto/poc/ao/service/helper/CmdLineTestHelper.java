@@ -14,6 +14,9 @@ public class CmdLineTestHelper {
     //
     // EXECUTE DOCKER COMMAND AND RETURN RESULT
     //
+    System.out.println("====================");
+    System.out.println(command);
+    System.out.println("====================");
     ByteArrayOutputStream stdout = new ByteArrayOutputStream();
     PumpStreamHandler psh = new PumpStreamHandler(stdout);
     CommandLine cmdLine = CommandLine.parse(command);
@@ -33,5 +36,13 @@ public class CmdLineTestHelper {
       res.exception = e.getMessage();
     }
     return res;
+  }
+
+  public static CmdLineExecutionResult executeAndFailIfNotValidStatusCode(String command, Integer expectedExitCode) {
+    CmdLineExecutionResult result = executeCommand(command.toString());
+    if (! result.exitCode.equals(expectedExitCode)) {
+      throw new RuntimeException("Exec of cmd failed with exit code: " + result.exitCode + " - " + command + " ---- EXCEPTION: " + result.exception);
+    }
+    return result;
   }
 }
