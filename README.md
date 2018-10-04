@@ -30,4 +30,4 @@ That is why we use the `atlas-unit-test` command.
 
 ### License
 
-[MIT] © [Comsysto Reply GmbH](https://comsystoreply.de)
+[MIT](./LICENSE) © [Comsysto Reply GmbH](https://comsystoreply.de)
