@@ -1,0 +1,1 @@
+# poc-dockerized-database-integration-tests-atlassian-plugin
