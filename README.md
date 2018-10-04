@@ -49,7 +49,7 @@ That is why we use the `atlas-unit-test` command.
  * Why not use `DynamicJdbcConfiguration` Annotation and System properties or maven profiles?
    * There are already many examples in the web on how to do that. I wanted to show another way.
  * Why not use `@ManyToOne` Annotations?
-   * You can do that if you want an **Left Join**
+   * You can do that if you want a **Left Join**
    * The PoC wants to show how to perform an **Inner Join** 
 
 
