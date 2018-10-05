@@ -15,13 +15,91 @@ This PoC is based on **[UnitTests for Active Objects](https://developer.atlassia
 
 ### Running the Tests
 
-Simply run:
+We can run the same test against different database engines.
+
+&nbsp;
+
+##### Run tests against embedded HSQLDB
 
 ```
 atlas-unit-test
 ```
 
-<p align="center"><img src="./doc/success.png" width="80%"></p>
+&nbsp;
+
+##### Run tests against dockerized PostgreSQL
+
+(1) Start dockerized PostgreSQL database
+
+```
+docker run --name postgres95 \
+           -d --rm -p 5441:5432 \
+           -e POSTGRES_PASSWORD=jira \
+           -e POSTGRES_USER=jira \
+           -e POSTGRES_DB=jira \
+           postgres:9.5
+```
+
+(2) Run tests against it
+
+```
+atlas-unit-test -Dao.test.database=postgres \
+                -Ddb.url=jdbc:postgresql://localhost:5441/jira  \
+                -Ddb.schema=public \
+                -Ddb.username=jira \
+                -Ddb.password=jira
+```
+
+<p align="center"><img src="./doc/demo.gif" width="80%"></p>
+
+We can see the **tables and indexes**:
+
+<p align="center"><img src="./doc/tables_and_indexes.png" width="80%"></p>
+
+
+(3) Shutdown dockerized PostgreSQL database.
+
+```
+docker kill postgres95
+```
+
+
+
+
+
+&nbsp;
+
+##### Run tests against dockerized MySQL
+
+(1) Start dockerized MySQL database
+
+```
+docker run --name mysql56 \
+           -d --rm \
+           -p 3316:3306 \
+           -e MYSQL_RANDOM_ROOT_PASSWORD=true \
+           -e MYSQL_USER=jira  \
+           -e MYSQL_PASSWORD=jira  \
+           -e MYSQL_DATABASE=jira  \
+           mysql:5.6
+```
+
+(2) Run tests against it
+
+```
+atlas-unit-test -Dao.test.database=mysql \
+                -Ddb.url=jdbc:mysql://localhost:3316/jira?autoReconnect=true  \
+                -Ddb.username=jira \
+                -Ddb.password=jira
+```
+
+  * Note that MySQL uses no so called "schema". So we skip the definition.
+
+(3) Shutdown dockerized MySQL database.
+
+```
+docker kill mysql56
+```
 
 &nbsp;
 
@@ -30,14 +108,10 @@ atlas-unit-test
  * Businss Logic
    * [**`OwnerEntity`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/model/OwnerEntity.java) = Active Objects Entity
    * [**`PetEntity`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/model/PetEntity.java) = Active Objects Entity
-   * [**`PetAndOwnerDataAccessService`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/service/PetAndOwnerDataAccessService.java) = Data Access API works with EntityManager 
- * Tests  
-   * [**`PetAndOwnerDataAccessServiceTest`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/PetAndOwnerDataAccessServiceTest.java) = Base test whose test methods are used by every specific database engine test
-   * [**`PetAndOwnerDataAccessService_MySQL_5_6_Test`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/PetAndOwnerDataAccessService_MySQL_5_6_Test.java) = Test that runs against dockerized MySQL 5.6
-   * [**`PetAndOwnerDataAccessService_PostgreSQL_9_5_Test`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/PetAndOwnerDataAccessService_PostgreSQL_9_5_Test.java) = Test that runs against dockerized PostgreSQL 9.5
- * Test Config
-   * [**`Dockerized_MySQL_5_6_JdbcConfig`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/jdbc/Dockerized_MySQL_5_6_JdbcConfig.java) = Test Config contains code to start docker container and JDBC Config for test
-   * [**`Dockerized_Postgres_9_5_JdbcConfig`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/jdbc/Dockerized_Postgres_9_5_JdbcConfig.java) = Test Config contains code to start docker container and JDBC Config for test
+   * [**`PetAndOwnerDataAccessServiceImpl`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/service/PetAndOwnerDataAccessServiceImpl.java) = Data Access API works with ActiveObjects 
+ * Test  
+   * [**`PetAndOwnerDataAccessServiceTest`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/PetAndOwnerDataAccessServiceTest.java) = Base test whose test methods are run against different database engines
+
 &nbsp;
 
 ### Distinctions
@@ -46,8 +120,6 @@ atlas-unit-test
    * Because even though it is named 'integration-test' it starts a full JIRA instance
 and runs tests against it. We only want to instantiate Active Objects with a real database and not the whole JIRA context.
 That is why we use the `atlas-unit-test` command.
- * Why not use `DynamicJdbcConfiguration` Annotation and System properties or maven profiles?
-   * There are already many examples in the web on how to do that. I wanted to show another way.
  * Why not use `@ManyToOne` Annotations?
    * You can do that if you want a **Left Join**
    * The PoC wants to show how to perform an **Inner Join** 
