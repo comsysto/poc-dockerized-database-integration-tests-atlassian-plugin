@@ -1,7 +1,7 @@
 # poc-dockerized-database-integration-tests-atlassian-plugin
 
 A simple Proof of Concept on how to run **Database Integration Tests with real dockerized PostgreSQL or MySQL Databases during Atlassian JIRA Plugin development**.
-This PoC is based on **[UnitTests for Active Objects](https://developer.atlassian.com/server/framework/atlassian-sdk/testing/)**. 
+This PoC is based on **[UnitTests for Active Objects](https://developer.atlassian.com/server/framework/atlassian-sdk/testing/)**.
 
 &nbsp;
 
@@ -37,7 +37,8 @@ docker run --name postgres95 \
            -e POSTGRES_PASSWORD=jira \
            -e POSTGRES_USER=jira \
            -e POSTGRES_DB=jira \
-           postgres:9.5
+           postgres:9.5 \
+           postgres -c 'log_statement=all'
 ```
 
 (2) Run tests against it
@@ -56,8 +57,13 @@ We can see the **tables and indexes**:
 
 <p align="center"><img src="./doc/tables_and_indexes.png" width="80%"></p>
 
+(3) See logged queries
 
-(3) Shutdown dockerized PostgreSQL database.
+```
+docker logs postgres95
+```
+
+(4) Shutdown dockerized PostgreSQL database.
 
 ```
 docker kill postgres95
@@ -108,7 +114,7 @@ docker kill mysql56
  * Businss Logic
    * [**`OwnerEntity`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/model/OwnerEntity.java) = Active Objects Entity
    * [**`PetEntity`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/model/PetEntity.java) = Active Objects Entity
-   * [**`PetAndOwnerDataAccessServiceImpl`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/service/PetAndOwnerDataAccessServiceImpl.java) = Data Access API works with ActiveObjects 
+   * [**`PetAndOwnerDataAccessServiceImpl`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/service/PetAndOwnerDataAccessServiceImpl.java) = Data Access API works with ActiveObjects
  * Test  
    * [**`PetAndOwnerDataAccessServiceTest`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/PetAndOwnerDataAccessServiceTest.java) = Base test whose test methods are run against different database engines
 
@@ -116,13 +122,13 @@ docker kill mysql56
 
 ### Distinctions
 
- * Why not `atlas-integration-test`? 
+ * Why not `atlas-integration-test`?
    * Because even though it is named 'integration-test' it starts a full JIRA instance
 and runs tests against it. We only want to instantiate Active Objects with a real database and not the whole JIRA context.
 That is why we use the `atlas-unit-test` command.
  * Why not use `@ManyToOne` Annotations?
    * You can do that if you want a **Left Join**
-   * The PoC wants to show how to perform an **Inner Join** 
+   * The PoC wants to show how to perform an **Inner Join**
 
 
 &nbsp;
