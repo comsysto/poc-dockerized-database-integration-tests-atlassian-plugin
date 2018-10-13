@@ -126,9 +126,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <!-- LATEST DRIVER NOR WORKING WITH AO => https://ecosystem.atlassian.net/browse/AO-3462 -->
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.12</version>
+            <version>5.1.46</version>
             <scope>test</scope>
         </dependency>
         <dependency>
