@@ -35,6 +35,16 @@ public class PetAndOwnerDataAccessServiceImpl implements PetAndOwnerDataAccessSe
         return activeObjects.find(OwnerEntity.class, searchQuery);
     }
 
+    public PetEntity[] getPetsWithoutOwners() {
+        Query searchQuery = Query
+                .select()
+                .distinct()
+                .limit(10) // You can add pagination here
+                .offset(0)
+                .where("OWNER_ID IS NULL");
+        return activeObjects.find(PetEntity.class, searchQuery);
+    }
+
     public void createOrUpdateOwner(String ownerName) {
         OwnerEntity owner = findOwnerByName(ownerName);
         if (owner == null) {

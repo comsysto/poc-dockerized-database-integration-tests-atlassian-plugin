@@ -116,7 +116,15 @@ docker kill mysql56
    * [**`PetEntity`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/model/PetEntity.java) = Active Objects Entity
    * [**`PetAndOwnerDataAccessServiceImpl`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/service/PetAndOwnerDataAccessServiceImpl.java) = Data Access API works with ActiveObjects
  * Test  
-   * [**`PetAndOwnerDataAccessServiceTest`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/PetAndOwnerDataAccessServiceTest.java) = Base test whose test methods are run against different database engines
+   * [**`OwnersAndPets.feature`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/resources/ut/com/comsysto/poc/ao/service/features/OwnersAndPets.feature) = BDD Gherkin file for Feature for business logic in `PetAndOwnerDataAccessServiceImpl`
+   * [**`Feature_OwnersAndPets_Test`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/features/Feature_OwnersAndPets_Test.java) = BDD Cucumber Test Feature for business logic in `PetAndOwnerDataAccessServiceImpl`  
+   * [**`Feature_OwnersAndPets_Scenario_FindOwnersWithPets`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/features/Feature_OwnersAndPets_Scenario_FindOwnersWithPets.java) = BDD Test Scenario
+   * [**`Feature_OwnersAndPets_Scenario_FindPetsWithoutOwners`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/features/Feature_OwnersAndPets_Scenario_FindPetsWithoutOwners.java) = BDD Test Scenario
+   
+
+<p align="center"><img src="./doc/test-bdd.png" width="80%"></p>
+
+   
 
 &nbsp;
 

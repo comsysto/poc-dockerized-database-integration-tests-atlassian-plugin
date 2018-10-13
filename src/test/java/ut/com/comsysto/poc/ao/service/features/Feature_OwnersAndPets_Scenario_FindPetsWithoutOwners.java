@@ -9,16 +9,16 @@ import cucumber.api.java8.En;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class Feature_OwnersAndPets_Scenario_FindOwnersWithPets implements En {
+public class Feature_OwnersAndPets_Scenario_FindPetsWithoutOwners implements En {
 
     // Dependencies
     private PetAndOwnerDataAccessServiceImpl petAndOwnerDataAccessService;
     private ActiveObjects activeObjects;
     // Subject
-    private OwnerEntity[] ownerEntities;
+    private PetEntity[] petEntities;
 
-    public Feature_OwnersAndPets_Scenario_FindOwnersWithPets() {
-        Given("owners and some pets with at least one pet having an owner", () -> {
+    public Feature_OwnersAndPets_Scenario_FindPetsWithoutOwners() {
+        Given("owners and some pets with at least one pet having no owner", () -> {
             // INIT DEPENDENCIES
             petAndOwnerDataAccessService = Feature_OwnersAndPets_Test.petAndOwnerDataAccessService;
             activeObjects = Feature_OwnersAndPets_Test.activeObjects;
@@ -41,14 +41,18 @@ public class Feature_OwnersAndPets_Scenario_FindOwnersWithPets implements En {
             pet.setType("CAT");
             pet.setOwnerId((long) owner2.getID());
             pet.save();
+            PetEntity pet2 = activeObjects.create(PetEntity.class);
+            pet2.setName("lone-smitty");
+            pet2.setType("DOG");
+            pet2.save();
         });
-        When("we query the database via method getOwnersWhoHavePets", () -> {
-            ownerEntities = petAndOwnerDataAccessService.getOwnersWhoHavePets();
+        When("we query the database via method getPetsWithoutOwners", () -> {
+            petEntities = petAndOwnerDataAccessService.getPetsWithoutOwners();
         });
-        Then("we should only retrieve owners who actually have pets", () -> {
-            assertThat(ownerEntities, is(notNullValue()));
-            assertThat(ownerEntities.length, is(1));
-            assertThat(ownerEntities[0].getName(), is(equalTo("jim")));
+        Then("we should only retrieve pets who actually have no owners", () -> {
+            assertThat(petEntities, is(notNullValue()));
+            assertThat(petEntities.length, is(1));
+            assertThat(petEntities[0].getName(), is(equalTo("lone-smitty")));
         });
     }
 

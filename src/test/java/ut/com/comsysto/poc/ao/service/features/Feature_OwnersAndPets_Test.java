@@ -16,7 +16,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.RunWith;
-import ut.com.comsysto.poc.ao.service.seed.DatabaseSeedHelper;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -25,9 +24,12 @@ import static org.junit.Assert.assertNotNull;
 @NameConverters
 public class Feature_OwnersAndPets_Test {
 
+    // ------ FROM HERE DOWN ACTIVE OBJECTS -----------
+
     private EntityManager entityManager;
-    private ActiveObjects activeObjects;
+
     // Make available to tests
+    public static ActiveObjects activeObjects;
     public static PetAndOwnerDataAccessServiceImpl petAndOwnerDataAccessService;
 
     @Before
@@ -41,11 +43,10 @@ public class Feature_OwnersAndPets_Test {
         @Override
         public void update(EntityManager entityManager) throws Exception {
             entityManager.migrate(PetEntity.class, OwnerEntity.class);
-            DatabaseSeedHelper.seed(entityManager);
         }
     }
 
-    // ------
+    // ------ FROM HERE DOWN CUCUMBER -----------
 
     @Test
     public void subRunner() throws Exception {
