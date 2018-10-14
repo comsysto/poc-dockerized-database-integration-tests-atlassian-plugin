@@ -50,7 +50,9 @@ public class Feature_OwnersAndPets_Test {
 
     @Test
     public void subRunner() throws Exception {
-        assert(JUnitCore.runClasses(SubRunner.class).wasSuccessful());
+        Result res = JUnitCore.runClasses(SubRunner.class);
+        System.err.println(res.getFailures());
+        assert(res.wasSuccessful());
     }
 
     @RunWith(Cucumber.class)
