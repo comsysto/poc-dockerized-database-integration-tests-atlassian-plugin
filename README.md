@@ -1,6 +1,8 @@
-# poc-dockerized-database-integration-tests-atlassian-plugin
+<p align="center"><img src="./doc/opengraph.png" width="95%"></p>
 
-A simple Proof of Concept on how to run **Database Integration Tests with real dockerized PostgreSQL or MySQL Databases during Atlassian JIRA Plugin development**.
+# Proof of Concept: Dockerized Database Integration Tests for Atlassian Server App
+
+A simple Proof of Concept on how to run **Database Integration Tests with real dockerized PostgreSQL or MySQL Databases during Atlassian JIRA Server App development**.
 This PoC is based on **[UnitTests for Active Objects](https://developer.atlassian.com/server/framework/atlassian-sdk/testing/)**.
 
 &nbsp;
