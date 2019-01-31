@@ -1,4 +1,4 @@
-<p align="center"><img src="./doc/opengraph.png" width="95%"></p>
+<a href="https://comsystoreply.de/blog-post/app-entwicklung-fur-atlassian-jira-server-mit-active-objects-dockerized-postgresql-und-mysql"><p align="center"><img src="./doc/opengraph.png" width="95%"></p></a>
 
 # Proof of Concept: Dockerized Database Integration Tests 
 ## for Atlassian Server App
