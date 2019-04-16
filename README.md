@@ -1,6 +1,6 @@
 <a href="https://comsystoreply.de/blog-post/app-entwicklung-fur-atlassian-jira-server-mit-active-objects-dockerized-postgresql-und-mysql"><p align="center"><img src="./doc/opengraph.png" width="95%"></p></a>
 
-# Proof of Concept: Dockerized Database Integration Tests 
+# Proof of Concept: Dockerized Database Integration Tests
 ## for Atlassian Server App
 
 A simple Proof of Concept on how to run **Database Integration Tests with real dockerized PostgreSQL or MySQL Databases during Atlassian JIRA Server App development**.
@@ -25,6 +25,9 @@ We can run the same test against different database engines.
 ##### Run tests against embedded HSQLDB
 
 ```
+git clone https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin.git
+cd poc-dockerized-database-integration-tests-atlassian-plugin
+
 atlas-unit-test
 ```
 
@@ -118,16 +121,16 @@ docker kill mysql56
    * [**`OwnerEntity`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/model/OwnerEntity.java) = Active Objects Entity
    * [**`PetEntity`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/model/PetEntity.java) = Active Objects Entity
    * [**`PetAndOwnerDataAccessServiceImpl`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/main/java/com/comsysto/poc/ao/service/PetAndOwnerDataAccessServiceImpl.java) = Data Access API works with ActiveObjects
- * Test  
+ * Test
    * [**`OwnersAndPets.feature`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/resources/ut/com/comsysto/poc/ao/service/features/OwnersAndPets.feature) = BDD Gherkin file for Feature for business logic in `PetAndOwnerDataAccessServiceImpl`
-   * [**`Feature_OwnersAndPets_Test`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/features/Feature_OwnersAndPets_Test.java) = BDD Cucumber Test Feature for business logic in `PetAndOwnerDataAccessServiceImpl`  
+   * [**`Feature_OwnersAndPets_Test`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/features/Feature_OwnersAndPets_Test.java) = BDD Cucumber Test Feature for business logic in `PetAndOwnerDataAccessServiceImpl`
    * [**`Feature_OwnersAndPets_Scenario_FindOwnersWithPets`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/features/Feature_OwnersAndPets_Scenario_FindOwnersWithPets.java) = BDD Test Scenario
    * [**`Feature_OwnersAndPets_Scenario_FindPetsWithoutOwners`**](https://github.com/comsysto/poc-dockerized-database-integration-tests-atlassian-plugin/blob/master/src/test/java/ut/com/comsysto/poc/ao/service/features/Feature_OwnersAndPets_Scenario_FindPetsWithoutOwners.java) = BDD Test Scenario
-   
+
 
 <p align="center"><img src="./doc/test-bdd.png" width="80%"></p>
 
-   
+
 
 &nbsp;
 
