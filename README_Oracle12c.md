@@ -51,9 +51,9 @@ Download the `ojdbc8.jar` in version 12.2.0.1 from oracle.com.
 
 Install the dependecy locally on your machine:
 
-{code}
+```
 mvn install:install-file -Dfile=/Users/foo/ojdbc8.jar -DgroupId=oracle -DartifactId=ojdbc8 -Dversion=12.2.0.1
-{code}
+```
 
 
 &nbsp;
@@ -89,7 +89,7 @@ Now add this to `pom.xml`:
 
 ### (5) Run atlas-unit-test against Oracle
 
-Now make sure you have the latest Atlassian SDK installed an run:
+Now make sure you have the latest Atlassian SDK installed an run (with your settings):
 
 
 ```
