@@ -93,7 +93,9 @@ docker run --name mysql56 \
            -e MYSQL_USER=jira  \
            -e MYSQL_PASSWORD=jira  \
            -e MYSQL_DATABASE=jira  \
-           mysql:5.6
+           mysql:5.6 \
+             --innodb-lock-wait-timeout=800 \
+             --transaction-isolation=READ-COMMITTED
 ```
 
 (2) Run tests against it
