@@ -132,15 +132,9 @@ docker kill mysql56
  * See [Microsoft SQL Server 2012 on AWS RDS Guide](./README_MSSQL2012.md)
 
 
-
-
-
-
-
-
 &nbsp;
 
-##### Run tests against dockerized MySQL
+----
 
 &nbsp;
 
