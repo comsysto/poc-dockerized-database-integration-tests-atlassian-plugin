@@ -113,6 +113,35 @@ atlas-unit-test -Dao.test.database=mysql \
 docker kill mysql56
 ```
 
+
+
+
+
+
+&nbsp;
+
+##### Run tests against Oracle 12c on AWS RDS
+
+ * See [Oracle 12c on AWS RDS Guide](./README_Oracle12c.md)
+
+
+&nbsp;
+
+##### Run tests against Microsoft SQL Server 2012 on AWS RDS
+
+ * See [Microsoft SQL Server 2012 on AWS RDS Guide](./README_MSSQL2012.md)
+
+
+
+
+
+
+
+
+&nbsp;
+
+##### Run tests against dockerized MySQL
+
 &nbsp;
 
 ### Classes and Tests
