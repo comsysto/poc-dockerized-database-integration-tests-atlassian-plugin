@@ -93,10 +93,10 @@ Now make sure you have the latest Atlassian SDK installed an run (with your sett
 
 
 ```
-atlas-unit-test -Dao.test.database=jirau \
-                -Ddb.url=jdbc:oracle:thin:@//oracle12cnew.XXXXX.eu-central-1.rds.amazonaws.com:1521/ORCL  \
+# do not use ao.test.datababse !!!
+atlas-unit-test -Ddb.url=jdbc:oracle:thin:@//oracle12cnew.XXXXX.eu-central-1.rds.amazonaws.com:1521/ORCL  \
+                -Ddb.schema=jirau \
                 -Ddb.username=jirau \
                 -Ddb.password=jiraSuperPassword
 ```
 
-:bangbang: Currently this will lead to NullPointer Exceptions.
